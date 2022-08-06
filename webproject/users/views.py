@@ -7,8 +7,11 @@ from users.forms import LoginForm, ProfileModelForm, UserRegisterForm
 from users.models import Profile
 
 
+# @login_required(login_url='user-login')
 # def home(request):
-#     return HttpResponse('Hello World')
+#     # tasks = Task.objects.filter(user=request.user)
+#     posts = request.user.posts.all()
+#     return render(request, "tasks/home.html", {"tasks": posts, "count": posts.count()})
 
 
 def register(request):
@@ -35,7 +38,8 @@ def user_login(request):
             user = authenticate(request, username=username, password=password)  # or user or None
             if user:
                 login(request, user)
-                return redirect(next_page) if next_page else redirect('user-profile')
+                # return HttpResponse('homepage')
+                return redirect(next_page) if next_page else redirect('homepage')
             else:
                 return HttpResponse("Wrong credentials!")
 

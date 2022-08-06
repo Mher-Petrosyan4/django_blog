@@ -1,0 +1,9 @@
+from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
+from posts import views
+
+urlpatterns = [
+    path("", views.home, name='homepage'),
+    path('create-post/', views.create_post, name='create-post'),
+]
