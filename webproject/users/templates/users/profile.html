@@ -1,0 +1,33 @@
+{% extends 'users/base.html' %}
+
+    {% block content %}
+ {% load static %}
+
+	<div class="todo-list">
+	<h3>Profile</h3>
+		<div>
+			<h2>{{ profile.profile_image.url }}</h2>
+			<img src="{{ profile.profile_image.url }}" width="150" height="150">
+		</div>
+
+
+
+		<h2>{{ profile.bio }}</h2>
+
+		<h2> email {{ profile.user.email }}</h2>
+
+		<br>
+		<h2>{{ profile.age }}</h2>
+
+		<br>
+		<h2>{{ profile.get_gender_display }}</h2>
+
+		<br>
+
+	<a class="btn btn-sm btn-info" href="{% url 'update-profile' %}">Update</a>
+
+
+	</div>
+	{% endblock %}
+
+

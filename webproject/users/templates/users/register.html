@@ -1,0 +1,15 @@
+{% extends 'users/base.html' %}
+
+    {% block content %}
+		<h3>Register Here</h3>
+		<form method="POST" >
+		<!-- here should be the form don't forget about csrf_token -->
+			{% csrf_token %}
+			{{ form.as_p }}
+
+		<input class="btn btn-info" type="submit" name="Sign Up" value="Sign Up">
+	</form>
+
+    {% endblock %}
+
+
