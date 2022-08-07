@@ -1,0 +1,16 @@
+{% extends 'users/base.html' %}
+
+    {% block content %}
+
+<h1>Hello from django</h1>
+		<form method="POST" >
+
+{% csrf_token %}
+{{ form.as_p }}
+
+		<input class="btn btn-info" type="submit" name="Create Task">
+        </form>
+
+	{% endblock %}
+
+

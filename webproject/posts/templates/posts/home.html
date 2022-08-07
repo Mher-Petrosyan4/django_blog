@@ -5,7 +5,10 @@
 <h1>Hello from django</h1>
 {% csrf_token %}
 {% for post in posts %}
-	{{ post }}
+	{{ post.caption }}
+	<br>
+	<br>
+	{{ post.post_images.url }}
 {% endfor %}
 	{% endblock %}
 
