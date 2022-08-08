@@ -8,4 +8,4 @@ class PostsModelForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields =['image', 'caption']
+        fields =['caption', 'image']

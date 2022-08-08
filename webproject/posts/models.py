@@ -16,19 +16,26 @@ class Post(models.Model):
     image = models.ImageField(upload_to=profile_image_path, blank=True)
     caption = models.TextField()
     created_at = models.DateTimeField(default=datetime.now)
-    no_of_likes = models.IntegerField(default=0)
+    liked = models.ManyToManyField(User, default=None, blank=True, related_name='liked')
 
     def __str__(self):
-        return self.user
+        return str(self.user)
 
-# def profile_image_path(instance, filename):
-#     print(instance, filename)
-#     return f"profile_images/{instance.user.username}/{filename}"
-#
-#
-# class Profile(models.Model):
-#     profile_image = models.ImageField(upload_to=profile_image_path, default='static/images/profile_pic.png')
-#     bio = models.TextField(blank=True, null=True)
-#     age = models.IntegerField(blank=True, null=True)
-#     gender = models.IntegerField(choices=GenderChoice.choices, blank=True, null=True)
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    @property
+    def num_like(self):
+        return str.liked.all().count()
+
+
+LIKE_CHOICES = (
+    ('Like', 'Like'),
+    ('Unlike', 'Unlike'),
+)
+
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES, default='like', max_length=10)
+
+    def __str__(self):
+        return str(self.post)
